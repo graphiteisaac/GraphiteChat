@@ -9,12 +9,12 @@ public class Ciao implements Listener {
     // Join event
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
-        e.setJoinMessage("§4§l[»]§r %s");
+        e.setJoinMessage("§a§l[»]§r " + e.getPlayer().getDisplayName());
     }
 
     // Leave event
     @EventHandler
     public void onLeave(PlayerQuitEvent e) {
-        e.setQuitMessage("§4§l[«]§r %s");
+        e.setQuitMessage("§c§l[«]§r " + e.getPlayer().getDisplayName());
     }
 }
