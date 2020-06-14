@@ -1,0 +1,7 @@
+name: GrphChat
+version: ${project.version}
+main: com.grphcrtv.GrphChat
+commands:
+  test:
+    description: Test command
+    uage: "Usage: '/test' to run command"
