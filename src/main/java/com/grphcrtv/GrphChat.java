@@ -1,6 +1,8 @@
 package com.grphcrtv;
 
-import com.grphcrtv.commands.Test;
+import com.grphcrtv.commands.SetNameColour;
+import com.grphcrtv.events.Ciao;
+import com.grphcrtv.events.PlayerChat;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -11,11 +13,16 @@ public final class GrphChat extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
+        // Config file
+        saveDefaultConfig();
+
         // Plugin startup logic
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(this, this);
+        pm.registerEvents(new PlayerChat(this), this);
+        pm.registerEvents(new Ciao(), this);
 
-        Objects.requireNonNull(getCommand("test")).setExecutor(new Test(this));
+        Objects.requireNonNull(getCommand("namecolour")).setExecutor(new SetNameColour(this));
     }
 
     @Override

@@ -1,7 +1,7 @@
-name: GrphChat
+name: grphChat
 version: ${project.version}
 main: com.grphcrtv.GrphChat
 commands:
-  test:
-    description: Test command
-    uage: "Usage: '/test' to run command"
+  namecolour:
+    description: Change name colour for chat messages
+    uage: "Usage: '/namecolour [colour]' to set your name colour!"
