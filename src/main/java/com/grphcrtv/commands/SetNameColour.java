@@ -1,6 +1,7 @@
 package com.grphcrtv.commands;
 
 import com.grphcrtv.GrphChat;
+import com.grphcrtv.helpers.MessageUtilities;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -40,16 +41,15 @@ public class SetNameColour implements TabExecutor {
                 // Set config
                 if (check(new String[] { "red", "black", "darkblue", "darkgreen", "darkaqua", "darkred", "darkpurple", "darkgrey", "gold", "grey", "blue", "green", "aqua", "purple", "yellow", "white" }, args[0])) {
                     plugin.getConfig().set("colours[" + pUuid + "]", GetChatColour(args[0]));
-
-                    p.sendMessage(ChatColor.GOLD + "-- Set " + pUuid + "'s colour to: " + args[0]);
+                    MessageUtilities.SuccessMessage(p, "Set your name colour to " + GetChatColour(args[0]) + args[0]);
                 } else if (args[0].equalsIgnoreCase("reset")) {
                     plugin.getConfig().set("colours[" + pUuid + "]", null);
-                    p.sendMessage(ChatColor.GOLD + "-- Name colour removed");
+                    MessageUtilities.SuccessMessage(p, "Name colour reset");
                 } else {
-                    p.sendMessage(ChatColor.GOLD + "-- You failed, please try a valid colour name");
+                    MessageUtilities.ErrorMessage(p, "Please only use a valid colour name.");
                 }
             } else {
-                p.sendMessage(ChatColor.GOLD + "-- You failed, please try a colour.");
+                MessageUtilities.ErrorMessage(p, "Please enter a colour name.");
             }
 
             plugin.saveConfig();
@@ -60,8 +60,7 @@ public class SetNameColour implements TabExecutor {
 
     public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
         if (args.length == 1) {
-            List<String> options = Arrays.asList("reset", "red", "black", "darkblue", "darkgreen", "darkaqua", "darkred", "darkpurple", "darkgrey", "gold", "grey", "blue", "green", "aqua", "purple", "yellow", "white");
-            return options;
+            return Arrays.asList("reset", "red", "black", "darkblue", "darkgreen", "darkaqua", "darkred", "darkpurple", "darkgrey", "gold", "grey", "blue", "green", "aqua", "purple", "yellow", "white");
         }
 
         return null;
